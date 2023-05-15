@@ -1,7 +1,7 @@
 import axios from 'axios';
 //first step like all those apis i save the key and URl
 const url = 'https://api.openweathermap.org/data/2.5/weather';
-const key =//For Security Purpose not entering my Key you can create your own key and add it here
+const key ='6e52daf8438d59fb4873293fd664ddc4';
 
 //now we creating an asyncronous function and then pass the query as a param
 /* Now we get the data for it We use Axios here not http ok alva adu movies app ge matra 
