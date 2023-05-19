@@ -1,5 +1,5 @@
     # Build environment
-    FROM node:lts as build
+    FROM node:18.16.0 as build
     WORKDIR /app
     # Copy package & package-lock
     COPY package*.json ./
