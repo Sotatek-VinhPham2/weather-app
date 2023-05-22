@@ -3,7 +3,7 @@ pipeline {
     stages{
         stage('gitclone'){
             steps{
-                sh 'git clone https://github.com/Sotatek-VinhPham2/weather-app.git'
+                git 'https://github.com/Sotatek-VinhPham2/weather-app.git'
             }
         }
         stage('build'){
