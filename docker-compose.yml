@@ -1,17 +1,20 @@
-version: "3.3"
+version: "3.5"
 services:
   app:
     image: 127.0.0.1:5000/weather
-    build:
-      context: .
+    networks:
+      - traefik-public
+    build: .
     ports:
       - 3000:3000
-    depends_on:
-      - traefik
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.weather.rule=Host(`weather.localhost`)"
+        - "traefik.http.routers.weather.entrypoints=websecure"
+        - "traefik.http.routers.weather.tls.certresolver=letsencryptresolver"
+        - "traefik.http.services.weather.loadbalancer.server.port=3000"
     entrypoint: ["npm", "start"]
-  traefik:
-    image: traefik:v2.9
-    command: --api.insecure=true --providers.docker
-    ports:
-      - 80:80
-      - 8080:8080
+networks:
+  traefik-public:
+    external: true
