@@ -4,17 +4,20 @@ node {
         git branch: 'main', credentialsId: 'github', url: 'https://github.com/Sotatek-VinhPham2/weather-app.git'
     }
     
-    stage('SonarQube analysis'){
-        steps {
-            withSonarQubeEnv('SonaerQube') {
-                sh './gradlew sonarqube'
+    stage("SonarQube analysis") {
+        node {
+            withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
             }
         }
     }
 
-    stage('Quality gate') {
-        steps {
-            waitForQualityGate abortPipeline: true
+    stage("Quality Gate"){
+        timeout(time: 1, unit: 'HOURS') {
+            def qg = waitForQualityGate()
+            if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            }
         }
     }
 
