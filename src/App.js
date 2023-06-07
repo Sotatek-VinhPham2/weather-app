@@ -1,7 +1,6 @@
 import React,{ useState } from 'react';
 import  fetchWeather  from './api/fetchWeather';
 import './App.css';
-import Footer from './components/Footer';
 
 function App() {
     const [query, setQuery] = useState('');
@@ -37,7 +36,6 @@ function App() {
         </div>
       </div>
     )}
-    <Footer/>
     </div>
   )
 }
