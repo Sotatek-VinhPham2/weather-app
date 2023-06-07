@@ -4,6 +4,19 @@ node {
         git branch: 'main', credentialsId: 'github', url: 'https://github.com/Sotatek-VinhPham2/weather-app.git'
     }
     
+    stage('SonarQube analysis'){
+        steps {
+            withSonarQubeEnv('SonaerQube') {
+                sh './gradlew sonarqube'
+            }
+    }
+
+    stage('Quality gate') {
+        steps {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+
     stage('Build image') {
        dockerImage = docker.build("vihnpalm/projects:weather-app")
     }
