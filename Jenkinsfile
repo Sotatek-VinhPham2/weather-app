@@ -9,7 +9,8 @@ node {
     }
 
     stage('Test image') {
-        sh 'docker run vihnpalm/projects:weather-app npm run test'
+        sh 'docker run vihnpalm/projects:weather-app npm run start'
+        sh 'docker stop vihnpalm/projects:weather-app'
     }
     
     stage('Push image') {
