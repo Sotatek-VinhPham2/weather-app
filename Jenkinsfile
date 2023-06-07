@@ -1,7 +1,7 @@
 node {
     def dockerImage
     stage('Clone repository') {
-        checkout scm
+        git branch: 'main', credentialsId: 'github', url: 'https://github.com/Sotatek-VinhPham2/weather-app.git'
     }
     
     stage('Build image') {
@@ -14,9 +14,13 @@ node {
         }
     }
     
- stage('Push image') {
+    stage('Push image') {
         withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
         dockerImage.push()
         }
-    }    
+    }
+    
+    stage('Deploy image') {
+        sh 'docker stack deploy -c docker-compose.yml weather'
+    }
 }
