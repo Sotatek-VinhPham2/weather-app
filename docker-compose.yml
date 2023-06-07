@@ -1,4 +1,4 @@
-version: "3.5" #test
+version: "3.5"
 services:
   app:
     image: vihnpalm/projects:weather-app
