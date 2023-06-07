@@ -9,7 +9,7 @@ services:
       - 3000:3000
     deploy:
       labels:
-        - "traefik.enable=true"
+        - "traefik.enable=true" #test
         - "traefik.http.routers.weather.rule=Host(`weather.localhost`)"
         - "traefik.http.routers.weather.entrypoints=websecure"
         - "traefik.http.routers.weather.tls.certresolver=letsencryptresolver"
