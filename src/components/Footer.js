@@ -3,7 +3,7 @@ import "../App.css";
 
 const Footer = () => {
   return (
-    <div className="ftr">Checked by <a href='https://vihnpalm.com'>vplm</a></div>
+    <div className="ftr">For testing purposes</div>
   )
 }
 export default Footer

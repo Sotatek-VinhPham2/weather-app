@@ -26,7 +26,7 @@ html, body, #root {
     border-radius: 20px;
     border: none;
     margin-bottom: 3%;
-    background: rgba(17, 15, 15, 0.85);
+    background: rgba(255, 255, 255, 0.85);
 }
 
 .city {
