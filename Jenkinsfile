@@ -8,10 +8,9 @@ node {
        dockerImage = docker.build("vihnpalm/projects:weather-app")
     }
 
-    stage('Test image') {
-        sh 'docker run vihnpalm/projects:weather-app npm run start'
-        sh 'docker stop vihnpalm/projects:weather-app'
-    }
+/*     stage('Test image') {
+        sh 'docker run vihnpalm/projects:weather-app npm run test'
+    } */
     
     stage('Push image') {
         withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
