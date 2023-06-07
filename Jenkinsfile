@@ -9,6 +9,7 @@ node {
             withSonarQubeEnv('SonaerQube') {
                 sh './gradlew sonarqube'
             }
+        }
     }
 
     stage('Quality gate') {
