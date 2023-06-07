@@ -9,8 +9,7 @@ node {
     }
 
     stage('Test image') {
-        dockerImage.inside {
-            sh 'docker run vihnpalm/projects:weather-app npm run test'
+        sh 'docker run vihnpalm/projects:weather-app npm run test'
         }
     }
     
