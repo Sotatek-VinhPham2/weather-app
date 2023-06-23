@@ -18,7 +18,7 @@ node {
                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
         }
-    }
+    } */
 
     stage('Build image') {
        dockerImage = docker.build("vihnpalm/projects:weather-app")
@@ -26,7 +26,7 @@ node {
 
     stage('Test image') {
         sh 'docker run vihnpalm/projects:weather-app npm run test'
-    } */
+    } 
     
     stage('Push image') {
         withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
