@@ -8,7 +8,7 @@ node {
         script{
         def scannerHome = tool 'sonarscanner';
         withSonarQubeEnv('sonarqube') {
-            sh "${tool("sonarscan")}/bin/sonar-scanner \
+            sh "${tool("sonarscanner")}/bin/sonar-scanner \
                 -Dsonar.projectKey=weather-app \
                 -Dsonar.projectName=weather-app"
         }
