@@ -4,21 +4,18 @@ node {
         git branch: 'main', credentialsId: 'github', url: 'https://github.com/Sotatek-VinhPham2/weather-app.git'
     }
     
-/*    stage('SonarQube analysis') {
-        def scannerHome = tool 'SonarScanner 4.0';
-        withSonarQubeEnv('SonarQube') { // If you have configured more than one global server connection, you can specify its name
-        sh "${scannerHome}/bin/sonar-scanner"
-        }
-    }
-
-    stage("Quality Gate"){
-        timeout(time: 1, unit: 'HOURS') {
-            def qg = waitForQualityGate()
-            if (qg.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    stage('SonarQube analysis') {
+        steps {
+            script{
+            def scannerHome = tool 'sonarscan';
+            withSonarQubeEnv('sonarqube') {
+                sh "${tool("sonarscan")}/bin/sonar-scanner \
+                    -Dsonar.projectKey=reactapp \
+                    -Dsonar.projectName=reactapp"
+            }
             }
         }
-    } */
+    }
 
     stage('Build image') {
        dockerImage = docker.build("vihnpalm/projects:weather-app")
