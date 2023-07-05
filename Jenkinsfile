@@ -5,15 +5,13 @@ node {
     }
     
     stage('SonarQube analysis') {
-        steps {
-            script{
-            def scannerHome = tool 'sonarscan';
-            withSonarQubeEnv('sonarqube') {
-                sh "${tool("sonarscan")}/bin/sonar-scanner \
-                    -Dsonar.projectKey=weather-app \
-                    -Dsonar.projectName=weather-app"
-            }
-            }
+        script{
+        def scannerHome = tool 'sonarscan';
+        withSonarQubeEnv('sonarqube') {
+            sh "${tool("sonarscan")}/bin/sonar-scanner \
+                -Dsonar.projectKey=weather-app \
+                -Dsonar.projectName=weather-app"
+        }
         }
     }
 
