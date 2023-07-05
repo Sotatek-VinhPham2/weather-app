@@ -6,7 +6,7 @@ node {
     
     stage('SonarQube analysis') {
         script{
-        def scannerHome = tool 'sonarscan';
+        def scannerHome = tool 'sonarscanner';
         withSonarQubeEnv('sonarqube') {
             sh "${tool("sonarscan")}/bin/sonar-scanner \
                 -Dsonar.projectKey=weather-app \
